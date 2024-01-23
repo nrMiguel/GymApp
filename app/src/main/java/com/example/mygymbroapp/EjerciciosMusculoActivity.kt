@@ -34,7 +34,41 @@ class EjerciciosMusculoActivity : AppCompatActivity() {
             "Pectoral Inferior interior" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.pectoralInferiorInteriorList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
 
             //Deltoides.
+            "Deltoides Anterior" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.deltoidesAnteriorList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
+            "Deltoides Medio" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.deltoidesMedioList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
+            "Deltoides Posterior" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.deltoidesPosteriorList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
 
+            //Biceps.
+            "Cabeza Larga" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.bicepsCabezaLargaList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
+            "Cabeza Corta" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.bicepsCabezaCortaList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
+
+            //Trapecios
+            "Trapecio Superior" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.trapecioSuperiorList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
+            "Trapecio Medio" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.trapecioMedioList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
+            "Trapecio Inferior" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.trapecioInferiorList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
+
+            //Triceps
+            "Cabeza Lateral" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.tricepsCabezaLateralList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
+            "Cabeza Larga" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.tricepsCabezaLargaList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
+            "Cabeza Medial" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.tricepsCabezaMedialList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
+
+            //Espalda
+            /* TODO: Esto puede que no deba ponerlo aquí.
+            "Redondo Mayor" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.espaldaRedondoMayor) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
+            "Redondo Menor" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.espaldaRedondoMenor) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
+             */
+            "Dorsales" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.espaldaDorsalList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
+            "Espalda baja" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.espaldaBajaList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
+
+            //Glúteos.
+            "Gluteo Superior" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.gluteoSuperiorList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
+            "Gluteo Mayor" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.gluteoMayorList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
+
+            //Piernas.
+            "Cuadriceps" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.cuadricepsList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
+            "Esquiotibiales" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.esquiotibialesList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
+            "Aductores" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.aductoresList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
+            "Gemelos" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.gemelosList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
         }
     }
 

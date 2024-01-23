@@ -37,8 +37,10 @@ class MusculosDeGrupoMuscularProvider {
         )
 
         val musculosEspaldaList = listOf<MusculoDeGrupoMusuclar>(
+            /* TODO: Puede que esto no deba estar aquí.
             MusculoDeGrupoMusuclar("Redondo Mayor", "https://fisiosesto.com/wp-content/uploads/2020/02/1826a3_695a865290f84fc092a9bd06579307f5-mv2-724x627.jpg"),
             MusculoDeGrupoMusuclar("Redondo Menor", "https://www.ugr.es/~dlcruz/musculos/images/atlas/teresminorpost.jpg"),
+             */
             MusculoDeGrupoMusuclar("Dorsales", "https://lh6.googleusercontent.com/Zd_7IzNL6OfC67FBvetF8-N3-OzdgTnWme1sfOcX-lvY2Hzvg8PPRFdmwAgHDjn34DO-LnNA8-09nye8Gm0DSpuyeHtg9z_nvDmWYpQ6NGVel3gacrvbDEc9ge5S6KRJXbbrZps"),
             MusculoDeGrupoMusuclar("Espalda baja", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjySAC1QS9PnDAS6taPEdpx7fwCYq0lpVovQ&usqp=CAU")
         )
