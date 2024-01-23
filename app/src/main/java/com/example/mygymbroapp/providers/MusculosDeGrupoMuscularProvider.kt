@@ -1,7 +1,6 @@
 package com.example.mygymbroapp.providers
 
-import com.example.mygymbroapp.MusculoDeGrupoMusuclar
-import com.example.mygymbroapp.placeholder.GrupoMuscular
+import com.example.mygymbroapp.clasesMusculos.MusculoDeGrupoMusuclar
 
 class MusculosDeGrupoMuscularProvider {
     companion object{

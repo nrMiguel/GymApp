@@ -15,6 +15,13 @@
         android:theme="@style/Theme.MyGymBroApp"
         tools:targetApi="31">
         <activity
+            android:name=".EjerciciosMusculoActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MusculoDeGrupoMuscularActivity"
             android:exported="false">
             <meta-data

@@ -1,11 +1,12 @@
 package com.example.mygymbroapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mygymbroapp.adapterMusculoDeGrupoMuscular.MusculoDeGrupoMuscularAdapter
+import com.example.mygymbroapp.clasesMusculos.MusculoDeGrupoMusuclar
 import com.example.mygymbroapp.databinding.ActivityMusculoDeGrupoMuscularBinding
 import com.example.mygymbroapp.providers.MusculosDeGrupoMuscularProvider
 
@@ -17,7 +18,7 @@ class MusculoDeGrupoMuscularActivity : AppCompatActivity() {
         binding = ActivityMusculoDeGrupoMuscularBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        intent.getStringExtra("Grupo_Muscular")?.let { initRecyclerView(it) }
+        intent.getStringExtra("Grupo Muscular")?.let { initRecyclerView(it) }
     }
 
     private fun initRecyclerView(grupoMuscular: String){
@@ -43,6 +44,7 @@ class MusculoDeGrupoMuscularActivity : AppCompatActivity() {
 
     //TODO: Esta función llevaría a la pantalla con todos los ejercicios posibles por musculo seleccionado.
     fun onItemSelected(musculoDeGrupoMusuclar: MusculoDeGrupoMusuclar){
-        Toast.makeText(this, musculoDeGrupoMusuclar.musculoDeGrupoMusuclar, Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, EjerciciosMusculoActivity::class.java). apply { putExtra("Musculo", musculoDeGrupoMusuclar.musculoDeGrupoMusuclar) }
+        startActivity(intent)
     }
 }

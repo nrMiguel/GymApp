@@ -43,10 +43,7 @@ class MainActivity : AppCompatActivity() {
     fun onItemSelected(grupoMuscular: GrupoMuscular){
         //Toast.makeText(this, grupoMuscular.grupoMuscular, Toast.LENGTH_SHORT).show()
 
-        val intent = Intent(this, MusculoDeGrupoMuscularActivity::class.java).apply {
-            putExtra("Grupo_Muscular", grupoMuscular.grupoMuscular)
-        }
-
+        val intent = Intent(this, MusculoDeGrupoMuscularActivity::class.java).apply { putExtra("Grupo Muscular", grupoMuscular.grupoMuscular) }
         startActivity(intent)
     }
 }

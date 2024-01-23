@@ -3,7 +3,7 @@ package com.example.mygymbroapp.adapterMusculoDeGrupoMuscular
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mygymbroapp.MusculoDeGrupoMusuclar
+import com.example.mygymbroapp.clasesMusculos.MusculoDeGrupoMusuclar
 import com.example.mygymbroapp.R
 
 class MusculoDeGrupoMuscularAdapter(private val musculoDeGrupoList: List<MusculoDeGrupoMusuclar>, private val onClickListener: (MusculoDeGrupoMusuclar) -> Unit) : RecyclerView.Adapter<MusculoDeGrupoMuscularViewHolder>(){
