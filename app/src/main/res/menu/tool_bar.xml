@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--"Fitness center", se refiere a la página donde podremos crear las rutinas, pudiendo poner el peso a manejar y los sets reps.-->
+    <item
+        android:id="@+id/fitness_center"
+        android:icon="@drawable/fitness_center_24px"
+        android:title="@string/fitness"
+        app:showAsAction="ifRoom"
+        />
+
+    <!--"Main page", se refiere a la página principal donde por el momento aparece la selección de músuclos, en un futuro podría convertirse en una RV GridView donde aparezcan las distintas Activities (Grupos musculares, Rutinas...).-->
+    <item
+        android:id="@+id/home_page"
+        android:icon="@drawable/home_24px"
+        android:title="@string/home"
+        app:showAsAction="ifRoom"/>
+
+</menu>

@@ -3,6 +3,9 @@ package com.example.mygymbroapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mygymbroapp.adapterMusculoDeGrupoMuscular.MusculoDeGrupoMuscularAdapter
@@ -19,6 +22,27 @@ class MusculoDeGrupoMuscularActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         intent.getStringExtra("Grupo Muscular")?.let { initRecyclerView(it) }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.tool_bar, menu)
+        return true
+    }
+
+    //TODO: Hacer que esto viaje a la Activity Rutina o a la misma MainActivity.
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId){
+            R.id.home_page -> {
+                Toast.makeText(this, "home_page", Toast.LENGTH_SHORT).show()
+                true
+            }
+            R.id.fitness_center -> {
+                Toast.makeText(this, "fitness_center", Toast.LENGTH_SHORT).show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun initRecyclerView(grupoMuscular: String){

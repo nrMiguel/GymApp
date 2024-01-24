@@ -10,7 +10,8 @@
         android:id="@+id/recyclerGruposMusculares"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-<!--
+
+<!-- Aunque digan de ponerlo funciona perfectamente sin poner esto para la barra de menú.
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"

@@ -2,6 +2,9 @@ package com.example.mygymbroapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mygymbroapp.adapterEjerciciosMusculo.EjerciciosMusculoAdapter
@@ -18,6 +21,27 @@ class EjerciciosMusculoActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         intent.getStringExtra("Musculo")?.let { initReyclerView(it) }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.tool_bar, menu)
+        return true
+    }
+
+    //TODO: Hacer que esto viaje a la Activity Rutina o a la misma MainActivity.
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId){
+            R.id.home_page -> {
+                Toast.makeText(this, "home_page", Toast.LENGTH_SHORT).show()
+                true
+            }
+            R.id.fitness_center -> {
+                Toast.makeText(this, "fitness_center", Toast.LENGTH_SHORT).show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun initReyclerView(musculo: String) {
@@ -39,7 +63,7 @@ class EjerciciosMusculoActivity : AppCompatActivity() {
             "Deltoides Posterior" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.deltoidesPosteriorList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
 
             //Biceps.
-            "Cabeza Larga" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.bicepsCabezaLargaList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
+            "Cabeza Larga Biceps" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.bicepsCabezaLargaList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
             "Cabeza Corta" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.bicepsCabezaCortaList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
 
             //Trapecios
@@ -49,7 +73,7 @@ class EjerciciosMusculoActivity : AppCompatActivity() {
 
             //Triceps
             "Cabeza Lateral" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.tricepsCabezaLateralList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
-            "Cabeza Larga" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.tricepsCabezaLargaList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
+            "Cabeza Larga Triceps" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.tricepsCabezaLargaList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
             "Cabeza Medial" -> binding.recyclerEjerciciosMusculo.adapter = EjerciciosMusculoAdapter(EjerciciosMusculoProvider.tricepsCabezaMedialList) { ejerciciosMusculo -> onItemSelected(ejerciciosMusculo) }
 
             //Espalda

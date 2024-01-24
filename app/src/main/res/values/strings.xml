@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My GymBro App</string>
+    <string name="home">home</string>
+    <string name="fitness">fitness</string>
 </resources>
