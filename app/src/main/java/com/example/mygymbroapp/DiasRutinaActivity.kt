@@ -14,7 +14,7 @@ import com.example.mygymbroapp.providers.DiasRutinaProvider
 import com.example.mygymbroapp.providers.GrupoMuscularProvider
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-/*
+
 class DiasRutinaActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDiasRutinaBinding
@@ -76,4 +76,3 @@ class DiasRutinaActivity : AppCompatActivity() {
 
 
 }
-*/

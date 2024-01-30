@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mygymbroapp.R
 import com.example.mygymbroapp.clasesMusculos.DiasRutina
-/*
+
 class DiasRutinaAdapter (private val diasRutinaList: List<DiasRutina>, private val onClickListener: (DiasRutina) -> Unit) : RecyclerView.Adapter<DiasRutinaViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiasRutinaViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -19,5 +19,3 @@ class DiasRutinaAdapter (private val diasRutinaList: List<DiasRutina>, private v
 
     override fun getItemCount(): Int = diasRutinaList.size
 }
-
- */

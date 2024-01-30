@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mygymbroapp.clasesMusculos.DiasRutina
 import com.example.mygymbroapp.databinding.ItemDiasRutinaBinding
-/*
+
 class DiasRutinaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val binding = ItemDiasRutinaBinding.bind(view)
 
@@ -17,5 +17,3 @@ class DiasRutinaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         itemView.setOnClickListener { onClickListener(diasRutinaModel) }
     }
 }
-
- */
