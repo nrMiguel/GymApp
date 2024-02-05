@@ -1,10 +1,17 @@
 package com.example.mygymbroapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.widget.Toast
+import androidx.core.view.marginTop
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mygymbroapp.BD.AppDataBase
+import com.example.mygymbroapp.BD.Rutina
 import com.example.mygymbroapp.adapterDiasRutina.DiasRutinaAdapter
 import com.example.mygymbroapp.clasesMusculos.DiasRutina
 import com.example.mygymbroapp.databinding.ActivityDiasRutinaBinding
@@ -29,8 +36,37 @@ class DiasRutinaActivity : AppCompatActivity() {
 
         db = AppDataBase.getInstance(this)!!
 
-        diasConRutina()
-        initRecyclerView()
+        if (intent.hasExtra("Crear")) {
+            intent.getStringExtra("Crear")?.let { initRecyclerViewCrear() }
+        } else {
+            diasConRutina()
+            initRecyclerView()
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.tool_bar, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId){
+            R.id.home_page -> {
+                startActivity(Intent(this, MainActivity::class.java))
+                true
+            }
+            R.id.fitness_center -> {
+                startActivity(Intent(this, DiasRutinaActivity::class.java))
+                true
+            }
+            R.id.crear_rutina -> {
+                val intent = Intent(this, DiasRutinaActivity::class.java).apply { putExtra("Crear", "Si") }
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun diasConRutina() {
@@ -70,9 +106,23 @@ class DiasRutinaActivity : AppCompatActivity() {
         binding.recyclerDiasRutina.adapter = DiasRutinaAdapter(DiasRutinaProvider.diasRutinaList) { diasRutina -> onItemSelected(diasRutina) }
     }
 
+    private fun initRecyclerViewCrear() {
+        val manager = LinearLayoutManager(this)
+
+        binding.recyclerDiasRutina.layoutManager = manager
+        binding.recyclerDiasRutina.adapter = DiasRutinaAdapter(DiasRutinaProvider.diasRutinaCrearList) { diasRutina -> onItemSelectedCrear(diasRutina) }
+    }
+
     private fun onItemSelected(diasRutina: DiasRutina) {
 
     }
 
+    private fun onItemSelectedCrear(diasRutina: DiasRutina) {
+        GlobalScope.launch {
+            db.rutinaDao().insertRutina(Rutina(diasRutina.diaSemana, ""))
+        }
 
+        val intent = Intent(this, MainActivity::class.java).apply { putExtra("Dia_semana", diasRutina.diaSemana) }
+        startActivity(intent)
+    }
 }

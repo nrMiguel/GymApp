@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--"Crear rutina", se refiere a la página donde se podrán generar rutinas-->
+    <item
+        android:id="@+id/crear_rutina"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="crear_rutina"
+        app:showAsAction="ifRoom" />
+
     <!--"Fitness center", se refiere a la página donde podremos crear las rutinas, pudiendo poner el peso a manejar y los sets reps.-->
     <item
         android:id="@+id/fitness_center"

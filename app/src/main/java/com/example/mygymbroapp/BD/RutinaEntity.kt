@@ -14,7 +14,7 @@ data class Rutina(
 @Entity
 data class Ejercicio (
     @PrimaryKey val musculo: String,
-    val rutinaDayOfWeek: Int,
+    val rutinaDayOfWeek: String,
     val photo: String?, //TODO: Puede que esto lo pueda suprimir buscando directamente en los providers por el nombre del músculo y del grupo muscular.
     val sets: Int?,
     val reps: Int?,

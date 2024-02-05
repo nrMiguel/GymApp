@@ -10,15 +10,19 @@ import android.view.MenuInflater
 import android.view.MenuItem
 
 import android.widget.Toast
+import androidx.core.view.isGone
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mygymbroapp.BD.AppDataBase
 import com.example.mygymbroapp.BD.Ejercicio
 import com.example.mygymbroapp.BD.Rutina
+import com.example.mygymbroapp.adapterDiasRutina.DiasRutinaAdapter
 
 import com.example.mygymbroapp.adapterGrupoMuscular.GrupoMuscualarAdapter
 import com.example.mygymbroapp.adapterMusculoDeGrupoMuscular.MusculoDeGrupoMuscularAdapter
 import com.example.mygymbroapp.databinding.ActivityMainBinding
 import com.example.mygymbroapp.placeholder.GrupoMuscular
+import com.example.mygymbroapp.providers.DiasRutinaProvider
 import com.example.mygymbroapp.providers.GrupoMuscularProvider
 import com.example.mygymbroapp.providers.MusculosDeGrupoMuscularProvider
 import kotlinx.coroutines.GlobalScope
@@ -28,6 +32,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     lateinit var db: AppDataBase
+    lateinit var diaSemana: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,9 +41,21 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //
-        //setSupportActionBar(binding.myToolbar) Esto peta la app
-        initRecyclerView()
+        //setSupportActionBar(binding.myToolbar) Esto peta la app+
+        //if (intent.hasExtra("Crear")) intent.getStringExtra("Crear")?.let { initRecyclerViewCrear() } else initRecyclerView()
+        if(intent.hasExtra("Dia_semana")) intent.getStringExtra("Dia_semana")?.let {
+            db = AppDataBase.getInstance(this)!!
+
+            diaSemana = it
+            binding.tvDiaSemana.visibility
+            binding.tvDiaSemana.text = diaSemana
+
+            initRecyclerViewCrear()
+        } else {
+            binding.tvDiaSemana.isGone
+            initRecyclerView()
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -47,21 +64,18 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    //TODO: Hacer que esto viaje a la Activity Rutina o a la misma MainActivity.
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId){
             R.id.home_page -> {
-                Toast.makeText(this, "home_page", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, MainActivity::class.java))
                 true
             }
             R.id.fitness_center -> {
-                //Toast.makeText(this, "fitness_center", Toast.LENGTH_SHORT).show()
-
                 //TODO: Borrar inserts cuando sea funcional.
                 db = AppDataBase.getInstance(this)!!
                 GlobalScope.launch {
                     db.rutinaDao().insertRutina(Rutina("Lunes", "Pecho"))
-                    db.ejercicioDao().insertEjercicio(Ejercicio("Pectoral Mayor Superior", 1, null, 3, 8, 22.0))
+                    db.ejercicioDao().insertEjercicio(Ejercicio("Pectoral Mayor Superior", "Lunes", null, 3, 8, 22.0))
 
                     val rutinasDb = db.rutinaDao().getAllRutinasEjercicios()
 
@@ -71,6 +85,11 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, DiasRutinaActivity::class.java)
                 startActivity(intent)
 
+                true
+            }
+            R.id.crear_rutina -> {
+                val intent = Intent(this, DiasRutinaActivity::class.java).apply { putExtra("Crear", "Si") }
+                startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -89,11 +108,31 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerGruposMusculares.adapter = GrupoMuscualarAdapter(GrupoMuscularProvider.grupoMuscularList) { grupoMuscular -> onItemSelected(grupoMuscular) }
     }
 
+    private fun initRecyclerViewCrear() {
+        val manager = GridLayoutManager(this, 3)
+
+        binding.recyclerGruposMusculares.layoutManager = manager
+        binding.recyclerGruposMusculares.adapter = GrupoMuscualarAdapter(GrupoMuscularProvider.grupoMuscularList) { grupoMuscular -> onItemSelectedCrear(grupoMuscular) }
+    }
+
     //En base a la selección del grupo muscular motrará por separado las diferentes partes del grupo muscular a poder entrenar.
     fun onItemSelected(grupoMuscular: GrupoMuscular){
-        //Toast.makeText(this, grupoMuscular.grupoMuscular, Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, MusculoDeGrupoMuscularActivity::class.java).apply {
+            putExtra("Grupo_Muscular", grupoMuscular.grupoMuscular)
+            //putExtra("Dia_semana", "")
+        }
+        startActivity(intent)
+    }
 
-        val intent = Intent(this, MusculoDeGrupoMuscularActivity::class.java).apply { putExtra("Grupo Muscular", grupoMuscular.grupoMuscular) }
+    fun onItemSelectedCrear(grupoMuscular: GrupoMuscular){
+        //TODO: voy por aquí, ahora tocaría ir hacía los músculos para añadir a las rutinas. Aunque probablemente primero debería crear la Activity para que se pueda poner los pesos, sets y tal.
+        GlobalScope.launch {
+            db.rutinaDao().insertRutina(Rutina(diaSemana, grupoMuscular.grupoMuscular))
+        }
+        val intent = Intent(this, MusculoDeGrupoMuscularActivity::class.java).apply {
+            putExtra("Grupo_Muscular", grupoMuscular.grupoMuscular)
+            putExtra("Dia_semana", diaSemana)
+        }
         startActivity(intent)
     }
 }
