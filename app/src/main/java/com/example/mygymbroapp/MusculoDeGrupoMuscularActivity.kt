@@ -21,7 +21,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class MusculoDeGrupoMuscularActivity : AppCompatActivity() {
-    private  lateinit var  binding: ActivityMusculoDeGrupoMuscularBinding
+    private lateinit var  binding: ActivityMusculoDeGrupoMuscularBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,6 +116,7 @@ class MusculoDeGrupoMuscularActivity : AppCompatActivity() {
     }
 
     fun onItemSelectedCrear(musculoDeGrupoMusuclar: MusculoDeGrupoMusuclar){
+        Log.i("-->", "MusculoDeGrupoMuscularActivity -> " + "\n\tDía semana: " + intent.getStringExtra("Dia_semana"))
         val intent = Intent(this, EjerciciosMusculoActivity::class.java). apply {
             putExtra("Grupo_Muscular", intent.getStringExtra("Grupo_Muscular"))
             putExtra("Dia_semana", intent.getStringExtra("Dia_semana"))

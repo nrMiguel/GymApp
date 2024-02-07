@@ -178,11 +178,17 @@ class EjerciciosMusculoActivity : AppCompatActivity() {
         Toast.makeText(this, ejerciciosMusculo.musculo, Toast.LENGTH_SHORT).show() //Test.
     }
 
-    //TODO: Falta poner la nueva Activity para poner pesos, reps y si eso algo más. Por el momento podría poner que guardara en BD las cosas y comprobar en el App inspection si es como quiero.
     private fun onItemSelectedCrear(ejerciciosMusculo: EjerciciosMusculo) {
-        GlobalScope.launch {
+        //GlobalScope.launch {
             //db.ejercicioDao().insertEjercicio(Ejercicio(ejerciciosMusculo.musculo, intent.getStringExtra("Dia_semana")!!, null, null, null, null))
+        //}
+        Log.i("-->", "EjercicioMusculoActivity -> " + "\n\tDía semana: " + intent.getStringExtra("Dia_semana"))
+        intent = Intent(this, AnadirMusculoActivity::class.java).apply {
+            putExtra("Grupo_Muscular", intent.getStringExtra("Grupo_Muscular"))
+            putExtra("Dia_semana", intent.getStringExtra("Dia_semana"))
+            putExtra("Musculo", ejerciciosMusculo.musculo)
+            putExtra("Photo", ejerciciosMusculo.photo)
         }
-
+        startActivity(intent)
     }
 }

@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.core.view.marginTop
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mygymbroapp.BD.AppDataBase
+import com.example.mygymbroapp.BD.EjerciciosRutina
 import com.example.mygymbroapp.BD.Rutina
 import com.example.mygymbroapp.adapterDiasRutina.DiasRutinaAdapter
 import com.example.mygymbroapp.clasesMusculos.DiasRutina
@@ -20,6 +21,7 @@ import com.example.mygymbroapp.databinding.ItemDiasRutinaBinding
 import com.example.mygymbroapp.providers.DiasRutinaProvider
 import com.example.mygymbroapp.providers.GrupoMuscularProvider
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class DiasRutinaActivity : AppCompatActivity() {
@@ -27,7 +29,7 @@ class DiasRutinaActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDiasRutinaBinding
 
     lateinit var db: AppDataBase
-    private var diasRutina: ArrayList<DiasRutina> = ArrayList()
+    lateinit private var rutina_eje: Array<EjerciciosRutina>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +41,16 @@ class DiasRutinaActivity : AppCompatActivity() {
         if (intent.hasExtra("Crear")) {
             intent.getStringExtra("Crear")?.let { initRecyclerViewCrear() }
         } else {
-            diasConRutina()
+            /* TODO: Como puñetas poner las dependencias para esta corutine.
+            lifecycleScope.launch {
+                diasConRutina()
+                initRecyclerView()
+            }
+             */
+
+            GlobalScope.async {
+                diasConRutina()
+            }.onAwait
             initRecyclerView()
         }
     }
@@ -69,22 +80,20 @@ class DiasRutinaActivity : AppCompatActivity() {
         }
     }
 
-    private fun diasConRutina() {
-        GlobalScope.launch {
-            val diasRutinaDb = db.rutinaDao().getAllRutina()
-            diasRutinaDb.forEach{
-                diasDb -> diasDb.dayOfWeek.forEach {
-                    DiasRutinaProvider.diasRutinaList.forEach {
-                        diasProvider -> diasProvider.diaSemana.forEach {
-                            if (diasDb.dayOfWeek.equals(diasProvider.diaSemana)){
-                                GrupoMuscularProvider.grupoMuscularList.forEach {
-                                    grupoMuscular -> grupoMuscular.grupoMuscular.forEach {
-                                        if (diasDb.grupoMuscular.equals(grupoMuscular.grupoMuscular)) {
-                                            Log.i("--->", "Day of week: " + diasDb.dayOfWeek + "\nDia semana Provider: " + diasProvider.diaSemana +
-                                                        "\n\tGrupoDB: " + diasDb.grupoMuscular + "\n\tGrupo Provider: " + grupoMuscular.grupoMuscular + "\n\tPhotoProvider: " + grupoMuscular.photo)
+    private suspend fun diasConRutina() {
+        val diasRutinaDb = db.rutinaDao().getAllRutina()
+        diasRutinaDb.forEach{
+            diasDb -> diasDb.dayOfWeek.forEach {
+                DiasRutinaProvider.diasRutinaList.forEach {
+                    diasProvider -> diasProvider.diaSemana.forEach {
+                        if (diasDb.dayOfWeek.equals(diasProvider.diaSemana)){
+                            GrupoMuscularProvider.grupoMuscularList.forEach {
+                                grupoMuscular -> grupoMuscular.grupoMuscular.forEach {
+                                    if (diasDb.grupoMuscular.equals(grupoMuscular.grupoMuscular)) {
+                                        Log.i("--->", "Day of week: " + diasDb.dayOfWeek + "\nDia semana Provider: " + diasProvider.diaSemana +
+                                                    "\n\tGrupoDB: " + diasDb.grupoMuscular + "\n\tGrupo Provider: " + grupoMuscular.grupoMuscular + "\n\tPhotoProvider: " + grupoMuscular.photo)
 
-                                            diasProvider.photo = grupoMuscular.photo
-                                        }
+                                        diasProvider.photo = grupoMuscular.photo
                                     }
                                 }
                             }
@@ -94,7 +103,7 @@ class DiasRutinaActivity : AppCompatActivity() {
             }
         }
         DiasRutinaProvider.diasRutinaList.forEach {
-            Log.i("---->", "Dia semana: " + it.diaSemana + "\n\tPhoto: " + it.photo)
+            //Log.i("---->", "Dia semana: " + it.diaSemana + "\n\tPhoto: " + it.photo)
         }
         //DiasRutinaProvider.diasRutinaList[0] = DiasRutina(DiasRutinaProvider.diasRutinaList[0].diaSemana, "https://bulevip.com/blog/wp-content/uploads/2015/11/pectoral-mayor-musculos.jpg") /////////////////////////////////////////Por AQUI.
     }
@@ -122,6 +131,7 @@ class DiasRutinaActivity : AppCompatActivity() {
             db.rutinaDao().insertRutina(Rutina(diasRutina.diaSemana, ""))
         }
 
+        Log.i("-->", "DiasRutinaActivity -> " + "\n\tDía semana: " + diasRutina.diaSemana)
         val intent = Intent(this, MainActivity::class.java).apply { putExtra("Dia_semana", diasRutina.diaSemana) }
         startActivity(intent)
     }

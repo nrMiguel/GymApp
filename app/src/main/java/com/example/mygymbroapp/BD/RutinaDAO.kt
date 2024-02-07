@@ -17,7 +17,7 @@ interface RutinaDAO {
 
     @Transaction
     @Query("SELECT * FROM rutina")
-    fun getAllRutinasEjercicios(): List<EjerciciosRutina>
+    fun getAllRutinasEjercicios(): Array<EjerciciosRutina>
 }
 
 @Dao

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mygymbroapp.BD.AppDataBase
 import com.example.mygymbroapp.BD.Ejercicio
+import com.example.mygymbroapp.BD.EjerciciosRutina
 import com.example.mygymbroapp.BD.Rutina
 import com.example.mygymbroapp.adapterDiasRutina.DiasRutinaAdapter
 
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     lateinit var db: AppDataBase
     lateinit var diaSemana: String
+    lateinit var rutina_eje: Array<EjerciciosRutina>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +42,14 @@ class MainActivity : AppCompatActivity() {
         //etContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //Cargamos datos de la BD sobre las rutinas creadas personalmente.
+        GlobalScope.launch {
+            db = AppDataBase.getInstance(this@MainActivity)!!
+            rutina_eje = db.rutinaDao().getAllRutinasEjercicios()
+
+            rutina_eje.forEach { Log.i("--->", it.toString()) }
+        }
 
         //setSupportActionBar(binding.myToolbar) Esto peta la app+
         //if (intent.hasExtra("Crear")) intent.getStringExtra("Crear")?.let { initRecyclerViewCrear() } else initRecyclerView()
@@ -56,6 +66,15 @@ class MainActivity : AppCompatActivity() {
             initRecyclerView()
         }
 
+        /*Test
+        GlobalScope.launch {
+            db = AppDataBase.getInstance(this@MainActivity)!!
+            val rutina_eje = db.rutinaDao().getAllRutinasEjercicios()
+
+            rutina_eje.forEach { Log.i("--->", it.toString()) }
+        }
+         */
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -71,24 +90,16 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.fitness_center -> {
-                //TODO: Borrar inserts cuando sea funcional.
-                db = AppDataBase.getInstance(this)!!
-                GlobalScope.launch {
-                    db.rutinaDao().insertRutina(Rutina("Lunes", "Pecho"))
-                    db.ejercicioDao().insertEjercicio(Ejercicio("Pectoral Mayor Superior", "Lunes", null, 3, 8, 22.0))
-
-                    val rutinasDb = db.rutinaDao().getAllRutinasEjercicios()
-
-                    rutinasDb.forEach{ Log.i("----->", it.ejercicios.toString()) }
-                }
-
                 val intent = Intent(this, DiasRutinaActivity::class.java)
                 startActivity(intent)
 
                 true
             }
             R.id.crear_rutina -> {
-                val intent = Intent(this, DiasRutinaActivity::class.java).apply { putExtra("Crear", "Si") }
+                val intent = Intent(this, DiasRutinaActivity::class.java).apply {
+                    putExtra("Crear", "Si")
+                    putExtra("Rutinas", rutina_eje) //TODO habría que hacer un Seralizable y ver como va el tema.
+                }
                 startActivity(intent)
                 true
             }
@@ -97,11 +108,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView(){
-        /*
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerGruposMusculares)
-        recyclerView.layoutManager= LinearLayoutManager(this)
-        recyclerView.adapter = GrupoMuscualarAdapter(GrupoMuscularProvider.grupoMuscularList)
-         */
         val manager = GridLayoutManager(this, 3)
 
         binding.recyclerGruposMusculares.layoutManager = manager
@@ -129,6 +135,7 @@ class MainActivity : AppCompatActivity() {
         GlobalScope.launch {
             db.rutinaDao().insertRutina(Rutina(diaSemana, grupoMuscular.grupoMuscular))
         }
+        Log.i("-->", "MainActivity -> \n\tDía semana: $diaSemana")
         val intent = Intent(this, MusculoDeGrupoMuscularActivity::class.java).apply {
             putExtra("Grupo_Muscular", grupoMuscular.grupoMuscular)
             putExtra("Dia_semana", diaSemana)
