@@ -26,6 +26,9 @@ interface EjercicioDao{
     @Query("SELECT * FROM ejercicio")
     fun getAllEjercicio(): List<Ejercicio>
 
+    @Query("SELECT * FROM ejercicio WHERE rutinaDayOfWeek = :day")
+    fun getEjerciciosByDay(day: String): List<Ejercicio>
+
     @Insert(onConflict = REPLACE)
     fun insertEjercicio(ejercicio: Ejercicio)
 

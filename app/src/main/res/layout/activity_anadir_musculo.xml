@@ -22,21 +22,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/ivEjercicioMusculo"
-        app:layout_constraintRight_toLeftOf="@id/tvPeso"
-        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toLeftOf="@id/tvReps"
+        android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
         android:text="Sets"
-        />
-
-    <TextView
-        android:id="@+id/tvPeso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/ivEjercicioMusculo"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="8dp"
-        android:text="Peso (kg)"
         />
 
     <TextView
@@ -44,10 +33,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/ivEjercicioMusculo"
-        app:layout_constraintLeft_toRightOf="@id/tvPeso"
-        android:layout_marginLeft="8dp"
+        app:layout_constraintStart_toStartOf="@id/ivEjercicioMusculo"
+        app:layout_constraintEnd_toEndOf="@id/ivEjercicioMusculo"
         android:layout_marginTop="8dp"
         android:text="Reps"
+        />
+    <TextView
+        android:id="@+id/tvPeso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/ivEjercicioMusculo"
+        app:layout_constraintLeft_toRightOf="@id/tvReps"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Peso"
         />
 
     <EditText
@@ -71,8 +70,8 @@
         app:layout_constraintEnd_toEndOf="@+id/tvPeso"
         app:layout_constraintStart_toStartOf="@+id/tvPeso"
         app:layout_constraintTop_toBottomOf="@+id/tvPeso"
-        tools:text="40"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        tools:text="40"/>
 
     <EditText
         android:id="@+id/etReps"
@@ -90,9 +89,9 @@
         android:id="@+id/btnAñadir"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/etPeso"
+        app:layout_constraintTop_toBottomOf="@+id/etReps"
         app:layout_constraintStart_toStartOf="@+id/etSets"
-        app:layout_constraintEnd_toEndOf="@+id/etReps"
+        app:layout_constraintEnd_toEndOf="@+id/etPeso"
         android:layout_marginTop="4dp"
         android:text="Añadir"
         />

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivEjercicioMusculo"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintBaseline_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:background="@color/black" />
+
+        <TextView
+            android:id="@+id/tvNombreEjercicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/ivEjercicioMusculo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            tools:text="Elevación lateral con trampa" />
+
+        <TextView
+            android:id="@+id/tvSets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/ivEjercicioMusculo"
+            app:layout_constraintTop_toBottomOf="@id/tvNombreEjercicio"
+            android:layout_marginHorizontal="16dp"
+            android:textStyle="bold"
+            tools:text="3"/>
+
+        <TextView
+            android:id="@+id/tvTextX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/tvSets"
+            app:layout_constraintTop_toBottomOf="@id/tvNombreEjercicio"
+            android:layout_marginLeft="5dp"
+            android:text="x"/>
+
+        <TextView
+            android:id="@+id/tvReps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/tvTextX"
+            app:layout_constraintTop_toBottomOf="@id/tvNombreEjercicio"
+            android:layout_marginHorizontal="4dp"
+            android:textStyle="bold"
+            tools:text="8"/>
+
+        <TextView
+            android:id="@+id/tvTextReps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/tvReps"
+            app:layout_constraintTop_toBottomOf="@id/tvNombreEjercicio"
+            android:layout_marginHorizontal="4dp"
+            android:text="reps"/>
+
+        <TextView
+            android:id="@+id/tvPeso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/tvTextReps"
+            app:layout_constraintTop_toBottomOf="@id/tvNombreEjercicio"
+            android:layout_marginLeft="32dp"
+            android:textStyle="bold"
+            tools:text="70"/>
+
+        <TextView
+            android:id="@+id/tvTextPeso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/tvPeso"
+            app:layout_constraintTop_toBottomOf="@id/tvNombreEjercicio"
+            android:layout_marginHorizontal="4dp"
+            android:text="kg"/>
+
+        <ImageButton
+            android:id="@+id/btnEditar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/edit_square_24px"
+            style="@style/Widget.AppCompat.Button.Borderless"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

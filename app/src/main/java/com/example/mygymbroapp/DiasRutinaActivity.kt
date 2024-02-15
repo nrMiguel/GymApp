@@ -36,6 +36,8 @@ class DiasRutinaActivity : AppCompatActivity() {
         binding = ActivityDiasRutinaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        Log.i("----->", "DiasRutinaACtivity") // Test.
+
         db = AppDataBase.getInstance(this)!!
 
         if (intent.hasExtra("Crear")) {
@@ -123,7 +125,8 @@ class DiasRutinaActivity : AppCompatActivity() {
     }
 
     private fun onItemSelected(diasRutina: DiasRutina) {
-
+        val intent = Intent(this, VerRutinasActivity::class.java).apply { putExtra("Dia_semana", diasRutina.diaSemana) }
+        startActivity(intent)
     }
 
     private fun onItemSelectedCrear(diasRutina: DiasRutina) {

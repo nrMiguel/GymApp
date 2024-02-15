@@ -28,6 +28,8 @@ class EjerciciosMusculoActivity : AppCompatActivity() {
         binding = ActivityEjerciciosMusculoBinding.inflate((layoutInflater))
         setContentView(binding.root)
 
+        Log.i("----->", "EjerciciosMusuculoActivity") // Test.
+
         if (intent.hasExtra("Dia_semana")) {
             db = AppDataBase.getInstance(this)!!
 
@@ -182,7 +184,7 @@ class EjerciciosMusculoActivity : AppCompatActivity() {
         //GlobalScope.launch {
             //db.ejercicioDao().insertEjercicio(Ejercicio(ejerciciosMusculo.musculo, intent.getStringExtra("Dia_semana")!!, null, null, null, null))
         //}
-        Log.i("-->", "EjercicioMusculoActivity -> " + "\n\tDía semana: " + intent.getStringExtra("Dia_semana"))
+        // Log.i("-->", "EjercicioMusculoActivity -> " + "\n\tDía semana: " + intent.getStringExtra("Dia_semana")) // Test.
         intent = Intent(this, AnadirMusculoActivity::class.java).apply {
             putExtra("Grupo_Muscular", intent.getStringExtra("Grupo_Muscular"))
             putExtra("Dia_semana", intent.getStringExtra("Dia_semana"))

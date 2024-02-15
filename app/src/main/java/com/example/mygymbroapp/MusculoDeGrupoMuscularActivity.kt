@@ -28,6 +28,8 @@ class MusculoDeGrupoMuscularActivity : AppCompatActivity() {
         binding = ActivityMusculoDeGrupoMuscularBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        Log.i("----->", "MusculoDeGrupoMuscularActivity") // Test.
+
         if (intent.hasExtra("Dia_semana")){
             intent.getStringExtra("Dia_semana")?.let {
                 diasSemana -> intent.getStringExtra("Grupo_Muscular")?.let {

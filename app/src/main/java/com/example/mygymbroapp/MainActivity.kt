@@ -43,12 +43,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        Log.i("----->", "MainActivity") // Test.
+
         //Cargamos datos de la BD sobre las rutinas creadas personalmente.
         GlobalScope.launch {
             db = AppDataBase.getInstance(this@MainActivity)!!
             rutina_eje = db.rutinaDao().getAllRutinasEjercicios()
 
-            rutina_eje.forEach { Log.i("--->", it.toString()) }
+            //rutina_eje.forEach { Log.i("----->", it.toString()) } // Test.
         }
 
         //setSupportActionBar(binding.myToolbar) Esto peta la app+
@@ -98,7 +100,7 @@ class MainActivity : AppCompatActivity() {
             R.id.crear_rutina -> {
                 val intent = Intent(this, DiasRutinaActivity::class.java).apply {
                     putExtra("Crear", "Si")
-                    putExtra("Rutinas", rutina_eje) //TODO habría que hacer un Seralizable y ver como va el tema.
+                    //putExtra("Rutinas", rutina_eje) //TODO habría que hacer un Seralizable y ver como va el tema.
                 }
                 startActivity(intent)
                 true
@@ -135,7 +137,7 @@ class MainActivity : AppCompatActivity() {
         GlobalScope.launch {
             db.rutinaDao().insertRutina(Rutina(diaSemana, grupoMuscular.grupoMuscular))
         }
-        Log.i("-->", "MainActivity -> \n\tDía semana: $diaSemana")
+       //Log.i("-->", "MainActivity -> \n\tDía semana: $diaSemana") // Test.
         val intent = Intent(this, MusculoDeGrupoMuscularActivity::class.java).apply {
             putExtra("Grupo_Muscular", grupoMuscular.grupoMuscular)
             putExtra("Dia_semana", diaSemana)
