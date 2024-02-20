@@ -10,6 +10,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 
 import android.widget.Toast
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.isGone
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,11 +38,14 @@ class MainActivity : AppCompatActivity() {
     lateinit var rutina_eje: Array<EjerciciosRutina>
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val screenSplash = installSplashScreen()
         super.onCreate(savedInstanceState)
         //GrupoMuscularProvider.grupoMuscularList
         //etContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        screenSplash.setKeepOnScreenCondition { false }
 
         Log.i("----->", "MainActivity") // Test.
 

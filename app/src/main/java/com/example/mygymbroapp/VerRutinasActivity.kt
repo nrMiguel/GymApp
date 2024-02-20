@@ -34,13 +34,12 @@ class VerRutinasActivity : AppCompatActivity() {
         GlobalScope.launch {
             rutinaList = db.ejercicioDao().getEjerciciosByDay(intent.getStringExtra("Dia_semana")!!)
 
-            Log.i("----->", "VerRutinasActivity") // Test.
+            //Log.i("----->", "VerRutinasActivity") // Test.
             // rutinaList.forEach { Log.i("----->", "\t$it") } // Test.
-
-            initRecyclerView(rutinaList)
         }
 
-        //TODO: Voy por aquí, faltaría poner que cargue el adapter, clickOnSet, OptionsMenú u algo para poder modificar desde esta misma vista los Sets Repts Peso o mismo ejericicio
+        Thread.sleep(300)
+        initRecyclerView(rutinaList)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

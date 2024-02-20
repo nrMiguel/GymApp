@@ -108,11 +108,11 @@ class AnadirMusculoActivity : AppCompatActivity() {
                                 } else {
                                     //TODO: No sé como cambiar el color de texto por si está érroneo usando binding.
                                     //TODO: Ahora de momento podría poner simples Toast. Aunque creo que este no va dentro de hilos.
-                                    Toast.makeText(this@AnadirMusculoActivity, "No has introducido un número Peso", Toast.LENGTH_SHORT).show()
+                                    //Toast.makeText(this@AnadirMusculoActivity, "No has introducido un número Peso", Toast.LENGTH_SHORT).show()
                                 }
-                                Toast.makeText(this@AnadirMusculoActivity, "No has introducido un número Reps", Toast.LENGTH_SHORT).show()
+                                //Toast.makeText(this@AnadirMusculoActivity, "No has introducido un número Reps", Toast.LENGTH_SHORT).show()
                             }
-                            Toast.makeText(this@AnadirMusculoActivity, "No has introducido un número Sets", Toast.LENGTH_SHORT).show()
+                            //Toast.makeText(this@AnadirMusculoActivity, "No has introducido un número Sets", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

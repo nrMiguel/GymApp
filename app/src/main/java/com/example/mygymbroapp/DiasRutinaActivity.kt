@@ -53,6 +53,7 @@ class DiasRutinaActivity : AppCompatActivity() {
             GlobalScope.async {
                 diasConRutina()
             }.onAwait
+            Thread.sleep(300)
             initRecyclerView()
         }
     }
